@@ -12,8 +12,15 @@ set(CMAKE_BUILD_TYPE "Release")
 set(DEPS_DIR ${CMAKE_BINARY_DIR}/tmp CACHE STRING "Dependency directory")
 get_filename_component(DEPS_DIR ${DEPS_DIR} REALPATH BASE_DIR ${CMAKE_BINARY_DIR})
 
-add_definitions(-std=c++2a -Wno-deprecated-copy)
-include_directories(template_common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+find_library(quadmath NAMES quadmath.a)
+add_definitions(-std=c++2a -Wno-deprecated-copy -fext-numeric-literals)
+
+file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+find_library(quadmath quadmath.a)
+
+add_library(template_common STATIC ${sources})
+target_include_directories(template_common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(template_common quadmath)
 
 if(TEMPLATE_COMMON_TEST)
     add_subdirectory(test)

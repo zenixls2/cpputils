@@ -9,7 +9,7 @@ protected:
 };
 
 template<class T>
-T hello(T a, type_identity_t<T> b) {
+T hello(T a, std::type_identity_t<T> b) {
     return a + b;
 }
 
