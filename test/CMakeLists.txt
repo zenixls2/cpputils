@@ -1,7 +1,7 @@
 find_package(Threads REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include(ExternalProject)
-set(gtest googletest_template_common)
+set(gtest googletest_cpputils)
 ExternalProject_Add(${gtest}
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG release-1.8.0
@@ -20,11 +20,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include
 
 add_executable(test_type_identity test_type_identity.cpp)
 target_link_libraries(test_type_identity ${TARGET})
-add_dependencies(test_type_identity googletest_template_common)
+add_dependencies(test_type_identity googletest_cpputils)
 
 add_executable(test_mathlib test_mathlib.cpp ${CMAKE_CURRENT_SOURCE_DIR}/../src/mathlib.cpp)
 target_link_libraries(test_mathlib ${TARGET})
-add_dependencies(test_mathlib googletest_template_common)
+add_dependencies(test_mathlib googletest_cpputils)
 
 add_definitions(-O3)
 #set(CMAKE_CXX_FLAGS "-Wno-error=deprecated-copy")

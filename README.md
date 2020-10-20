@@ -1,4 +1,4 @@
-template common
+CPP UTILS
 ================
 
 some useful utils for C++.
@@ -7,13 +7,13 @@ CMake:
 ```cmake
 # if need mathlib
 # find_library(quadmath NAMES quadmath.a)
-target_link_libraries(project template_common)
+target_link_libraries(project cpputils)
 ```
 
 compile (with test)
 ```bash
 mkdir build && cd build;
-cmake -DTEMPLATE_COMMON_TEST=ON ..;
+cmake -DCPPUTILS_TEST=ON ..;
 make
 ```
 
